@@ -1,0 +1,10 @@
+services:
+  web: &app_base
+    image: spm:latest
+    depends_on:
+      - postgres
+      - redis
+  postgres:
+    image: postgres:16-alpine
+  redis:
+    image: redis:7-alpine
