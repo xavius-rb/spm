@@ -16,6 +16,7 @@ services:
       - bundle_data:/usr/local/bundle
     environment:
       - ENABLE_BOOTSNAP=true
+      - REDIS_URL=redis://redis:6379/0
 
   js:
     <<: *app_base
