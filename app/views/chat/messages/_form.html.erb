@@ -1,4 +1,8 @@
-<%= form_with model: @message, url: chat_room_messages_url, remote: true do |form| %>
-  <%= form.text_field :body, autocomplete: "off" %>
-  <%= form.submit "Send", data: { disable_with: false }  %>
+<%= form_with model: @message, url: chat_room_messages_url, remote: true, class: "box" do |form| %>
+  <div class="field">
+    <%= form.text_field :body, class: "input is-normal", autocomplete: "off" %>
+  </div>
+  <div class="control">
+    <%= form.submit "Send", class: "button is-primary", data: { disable_with: false } %>
+  </div>
 <% end %>

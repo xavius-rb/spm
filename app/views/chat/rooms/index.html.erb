@@ -1,5 +1,7 @@
-<h3>Rooms</h3>
-<%= turbo_stream_from "chat_rooms" %>
-<div id="chat_rooms">
-  <%= render @rooms %>
+<div class="menu p-1">
+  <p class="menu-label">Rooms</p>
+  <%= turbo_stream_from "chat_rooms" %>
+  <ul class="menu-list" id="chat_rooms">
+    <%= render @rooms %>
+  </ul>
 </div>

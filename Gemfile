@@ -15,12 +15,14 @@ gem "redis"
 
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
+gem "xavius-controllers"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem "rspec-rails"
   gem "simplecov", require: false
   gem "factory_bot_rails"
+  gem "faker"
 end
 
 group :development do

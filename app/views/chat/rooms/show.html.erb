@@ -5,4 +5,4 @@
 </div>
 
 <%= turbo_frame_tag "new_message", src: new_chat_room_message_path(@room), target: "_top" %>
-<%= link_to "Back", chat_rooms_path %>
+<%= link_to "Back", chat_rooms_path, class: "button is-link" %>
