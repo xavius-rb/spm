@@ -1,23 +1,10 @@
 <nav class="column is-2 is-fullheight is-hidden-mobile">
   <div class="menu p-1">
-    <p class="menu-label is-hidden-touch">Navigation</p>
+    <p class="menu-label">Administration</p>
     <ul class="menu-list">
       <li><%= link_to t('home'), home_index_path, class: active_menu_class("home") %></li>
       <li><%= link_to t('rooms'), chat_rooms_path, class: active_menu_class("chat/rooms") %></li>
-    </ul>
-    <p class="menu-label">
-      Administration
-    </p>
-    <ul class="menu-list">
-      <li><a>Team Settings</a></li>
-      <li>
-        <a>Manage Your Team</a>
-        <ul>
-          <li><a>Members</a></li>
-          <li><a>Plugins</a></li>
-          <li><a>Add a member</a></li>
-        </ul>
-      </li>
+      <li><%= link_to t('projects'), projects_path, class: active_menu_class("projects") %></li>
     </ul>
   </div>
 </nav>

@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :chat_room, class: 'Chat::Room' do
-    name { Faker::Lorem.word }
+    sequence(:name) do |n|
+      "#{Faker::Lorem.word}#{n}"
+    end
     private { false }
 
     trait :private do
