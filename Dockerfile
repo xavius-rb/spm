@@ -37,7 +37,8 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 ENV DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/spm?
-RUN SECRET_KEY_BASE_DUMMY=1 bin/rails assets:precompile && rm -rf $BUNDLE_PATH/*.gem
+RUN REDIS_URL=redis://redis:6379/0 \
+    SECRET_KEY_BASE_DUMMY=1 bin/rails assets:precompile && rm -rf $BUNDLE_PATH/*.gem
 
 # Final stage for app image
 FROM base
@@ -50,8 +51,5 @@ COPY --from=build /rails /rails
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
-
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 EXPOSE 3000
