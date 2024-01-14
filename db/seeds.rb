@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+
+# hash list of chat rooms
+chat_rooms = [
+  { name: "General", private: false },
+  { name: "Tech", private: false },
+  { name: "Private Room", private: true }
+]
+# create chat rooms
+Chat::Room.upsert_all(chat_rooms)

@@ -1,45 +1,34 @@
 services:
   web: &app_base
-    command:
-      - /bin/sh
-      - -c
-      - bin/bundle exec puma -C config/puma.rb
+    image: spm:dev
+    command: ./bin/rails server -b 0.0.0.0
+    entrypoint: /rails/bin/docker-entrypoint
     tty: true
     stdin_open: true
     build:
       context: .
       target: build
-    ports:
-      - 3000:3000
     volumes:
       - .:/rails
       - bundle_data:/usr/local/bundle
     environment:
+      - RAILS_ENV=development
       - ENABLE_BOOTSNAP=true
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/spm?
 
   js:
     <<: *app_base
     command: yarn build --watch
-    build:
-      context: .
-      target: build
     ports: []
 
   postgres:
-    ports:
-      - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data:cached
     environment:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=dbpassword
       - POSTGRES_INITDB_ARGS="--username=dbuser"
-      - DATABASE_URL=postgresql://dbuser:dbpassword@postgres:5432/spm?
-
-  redis:
-    restart: always
-    ports:
-      - 6379:6379
 
 volumes:
   postgres_data: {}
